@@ -4,20 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Happy New Year 2026! 💖</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"> <!-- Smooth font -->
     <style>
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Poppins', sans-serif;
             background: linear-gradient(135deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
             color: white;
             text-align: center;
             margin: 0;
             padding: 20px;
             overflow-x: hidden;
+            transition: all 0.3s ease; /* Smooth transitions */
         }
         h1 {
             font-size: 2.5em;
             margin-bottom: 10px;
-            animation: bounce 2s infinite;
+            animation: bounce 2s infinite ease-in-out;
         }
         @keyframes bounce {
             0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
@@ -28,20 +30,30 @@
             font-size: 1.2em;
             margin: 20px 0;
             line-height: 1.5;
+            opacity: 0;
+            animation: fadeIn 2s ease-in-out 1s forwards;
+        }
+        @keyframes fadeIn {
+            to { opacity: 1; }
         }
         .gif-container {
             margin: 20px 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
         }
         .gif {
             width: 100%;
             max-width: 300px;
             border-radius: 10px;
+            margin: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
         }
         .options {
             margin: 30px 0;
         }
         .option-button {
-            background: rgba(255, 255, 255, 0.8);
+            background: rgba(255, 255, 255, 0.9);
             color: #333;
             border: none;
             padding: 15px 20px;
@@ -49,11 +61,30 @@
             border-radius: 25px;
             font-size: 1em;
             cursor: pointer;
-            transition: transform 0.3s, background 0.3s;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
         .option-button:hover {
-            transform: scale(1.1);
+            transform: scale(1.05);
             background: rgba(255, 255, 255, 1);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        .option-button.selected {
+            background: #ff6b6b;
+            color: white;
+        }
+        .description {
+            display: none;
+            margin-top: 10px;
+        }
+        .description textarea {
+            width: 80%;
+            max-width: 300px;
+            padding: 10px;
+            border-radius: 10px;
+            border: none;
+            resize: vertical;
+            font-family: inherit;
         }
         .custom-input {
             margin-top: 20px;
@@ -64,6 +95,7 @@
             border: none;
             width: 80%;
             max-width: 300px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
         .submit-btn {
             background: #ff6b6b;
@@ -73,6 +105,22 @@
             margin-top: 10px;
             border-radius: 10px;
             cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .submit-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        .loading {
+            display: none;
+            margin-top: 20px;
+            font-size: 1.2em;
+            animation: pulse 1s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
         }
         .confetti {
             position: absolute;
@@ -88,7 +136,7 @@
             width: 10px;
             height: 10px;
             background: #ffd700;
-            animation: fall 3s linear infinite;
+            animation: fall 3s linear infinite ease-in-out;
         }
         @keyframes fall {
             0% { transform: translateY(-100vh) rotate(0deg); }
@@ -120,6 +168,7 @@
         footer {
             margin-top: 40px;
             font-size: 0.8em;
+            opacity: 0.8;
         }
         audio {
             display: none; /* Hidden, but plays */
@@ -128,7 +177,7 @@
 </head>
 <body>
     <audio autoplay loop>
-        <source src="https://www.soundjay.com/misc/sounds/bell-ringing-05.wav" type="audio/wav"> <!-- Free love-themed bell sound; replace with a better one if needed (e.g., search for "romantic music free" on freesound.org) -->
+        <source src="https://www.soundjay.com/misc/sounds/bell-ringing-05.wav" type="audio/wav"> <!-- Placeholder; replace with better love music -->
         Your browser does not support the audio element.
     </audio>
     
@@ -140,25 +189,44 @@
         <p>My dearest Manu, 💕</p>
         <p>As the clock strikes midnight and 2026 begins, I want to wish you the happiest, most magical New Year ever! 🌟✨ May it be filled with love, laughter, adventures, and all your dreams coming true. You're my everything, and I'm so grateful for you. 🥰</p>
         <p>Love, Monu</p>
-        <p>Let's make this year unforgettable! What should we plan for our New Year party? Choose an idea or suggest your own: 🍽️🥂🛍️</p>
+        <p>Let's make this year unforgettable! What should we plan for our New Year party? Choose an idea, add a description, or suggest your own: 🍽️🥂🛍️</p>
     </div>
     
     <div class="gif-container">
-        <img src="https://media.giphy.com/media/3o7TKz9bX9Z8O2gO9q/giphy.gif" alt="New Year Fireworks" class="gif"> <!-- Fireworks GIF -->
-        <img src="https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif" alt="Happy Couple" class="gif"> <!-- Romantic couple GIF -->
+        <img src="https://media.giphy.com/media/3o7TKz9bX9Z8O2gO9q/giphy.gif" alt="New Year Fireworks" class="gif">
+        <img src="https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif" alt="Happy Couple" class="gif">
     </div>
     
     <div class="options">
-        <button class="option-button" onclick="selectOption('Meal Date')">🍽️ Meal Date - A cozy dinner at our favorite spot!</button>
-        <button class="option-button" onclick="selectOption('Mall Date')">🛍️ Mall Date - Shopping spree and fun!</button>
-        <button class="option-button" onclick="selectOption('Shopping Date')">💳 Shopping Date - Let's find some treasures!</button>
+        <div>
+            <button class="option-button" id="mealBtn" onclick="selectOption('Meal Date')">🍽️ Meal Date - A cozy dinner at our favorite spot!</button>
+            <div class="description" id="mealDesc">
+                <textarea placeholder="Add a description (e.g., Italian food, reservations needed?)"></textarea>
+            </div>
+        </div>
+        <div>
+            <button class="option-button" id="mallBtn" onclick="selectOption('Mall Date')">🛍️ Mall Date - Shopping spree and fun!</button>
+            <div class="description" id="mallDesc">
+                <textarea placeholder="Add a description (e.g., What to buy, time?)"></textarea>
+            </div>
+        </div>
+        <div>
+            <button class="option-button" id="shopBtn" onclick="selectOption('Shopping Date')">💳 Shopping Date - Let's find some treasures!</button>
+            <div class="description" id="shopDesc">
+                <textarea placeholder="Add a description (e.g., Online or in-store?)"></textarea>
+            </div>
+        </div>
         <div class="custom-input">
             <p>Or something else? Tell me your idea! 💡</p>
             <input type="text" id="customIdea" placeholder="E.g., Beach trip, Movie night...">
-            <button class="submit-btn" onclick="selectOption(document.getElementById('customIdea').value)">Submit Idea</button>
+            <div class="description" id="customDesc" style="display: block;">
+                <textarea placeholder="Add a description"></textarea>
+            </div>
+            <button class="submit-btn" onclick="selectOption(document.getElementById('customIdea').value, document.getElementById('customDesc').querySelector('textarea').value)">Submit Idea</button>
         </div>
     </div>
     
+    <div class="loading" id="loading">Sending your plan... ✨</div>
     <p id="selection" style="margin-top: 20px; font-weight: bold;"></p>
     
     <footer>
@@ -196,14 +264,36 @@
         }
         
         // Handle option selection
-        function selectOption(choice) {
-            if (!choice || choice.trim() === '') return;
-            document.getElementById('selection').innerText = `Great choice, Manu! Let's plan: ${choice} 🎉`;
-            triggerFireworks(); // Play fireworks animation
-            // Send email via mailto (opens email client)
-            const subject = encodeURIComponent("New Year 2026 Plan from Manu");
-            const body = encodeURIComponent(`Hi, Manu selected: ${choice}. Love, Monu`);
-            window.location.href = `mailto:suyashkulkarni653@gmail.com?subject=${subject}&body=${body}`;
+        let selectedOption = null;
+        function selectOption(choice, description = '') {
+            if (!choice || choice.trim() === '') {
+                alert('Please enter an idea!');
+                return;
+            }
+            // Reset previous selections
+            document.querySelectorAll('.option-button').forEach(btn => btn.classList.remove('selected'));
+            document.querySelectorAll('.description').forEach(desc => desc.style.display = 'none');
+            
+            // Set selected
+            if (choice !== document.getElementById('customIdea').value) {
+                const btnId = choice.replace(' ', '').toLowerCase() + 'Btn';
+                document.getElementById(btnId).classList.add('selected');
+                document.getElementById(btnId.replace('Btn', 'Desc')).style.display = 'block';
+                description = document.getElementById(btnId.replace('Btn', 'Desc')).querySelector('textarea').value;
+            }
+            
+            selectedOption = { choice, description };
+            document.getElementById('selection').innerText = `Great choice, Manu! Let's plan: ${choice}${description ? ' - ' + description : ''} 🎉`;
+            triggerFireworks();
+            
+            // Show loading and send email
+            document.getElementById('loading').style.display = 'block';
+            setTimeout(() => {
+                const subject = encodeURIComponent("New Year 2026 Plan from Manu");
+                const body = encodeURIComponent(`Hi, Manu selected: ${choice}${description ? ' - Description: ' + description : ''}. Love, Monu`);
+                window.location.href = `mailto:suyashkulkarni653@gmail.com?subject=${subject}&body=${body}`;
+                document.getElementById('loading').style.display = 'none';
+            }, 1000); // Simulate delay for smoothness
         }
     </script>
 </body>
