@@ -3,77 +3,101 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Happy New Year 2026 ❤️</title>
+<title>Happy New Year 2026 💖</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/qrcodejs/qrcode.min.js"></script>
 
 <style>
-* { box-sizing: border-box; }
-
 body {
-    margin: 0;
     font-family: 'Poppins', sans-serif;
-    background: linear-gradient(135deg, #ff758c, #ff7eb3);
+    background: linear-gradient(135deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
     color: white;
     text-align: center;
+    margin: 0;
+    padding: 20px;
     overflow-x: hidden;
 }
 
+/* Heading */
 h1 {
-    margin-top: 20px;
-    font-size: 2.3rem;
+    font-size: 2.5em;
     animation: bounce 2s infinite;
 }
 
 @keyframes bounce {
-    0%,100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
+    0%,20%,50%,80%,100% {transform: translateY(0);}
+    40% {transform: translateY(-12px);}
+    60% {transform: translateY(-6px);}
 }
 
 .message {
-    padding: 15px;
-    font-size: 1.1rem;
+    font-size: 1.15em;
+    margin: 20px 0;
+    animation: fadeIn 2s ease forwards;
 }
 
-.btn {
-    width: 90%;
-    max-width: 360px;
-    padding: 15px;
-    margin: 10px auto;
-    border-radius: 30px;
+@keyframes fadeIn {
+    from {opacity:0;}
+    to {opacity:1;}
+}
+
+/* GIF section */
+.gif-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.gif {
+    width: 280px;
+    border-radius: 15px;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+}
+
+/* Buttons */
+.option-button {
+    background: rgba(255,255,255,0.95);
     border: none;
-    font-size: 1rem;
+    padding: 15px 20px;
+    border-radius: 30px;
+    margin: 10px;
+    font-size: 1em;
     cursor: pointer;
-    background: white;
-    color: #ff4081;
     transition: 0.3s;
 }
 
-.btn:hover {
+.option-button:hover {
     transform: scale(1.05);
-    background: #ffe3ec;
 }
 
-.btn.selected {
-    background: #ff4081;
+.option-button.selected {
+    background: #ff6b6b;
     color: white;
 }
 
-input, textarea {
-    width: 90%;
-    max-width: 360px;
+/* Inputs */
+textarea, input {
+    width: 85%;
+    max-width: 350px;
     padding: 12px;
     border-radius: 12px;
     border: none;
     margin-top: 10px;
 }
 
-.submit {
-    background: #ff4081;
+/* Submit */
+.submit-btn {
+    margin-top: 15px;
+    background: #ff6b6b;
     color: white;
+    padding: 12px 25px;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
 }
 
+/* Popup */
 .popup {
     position: fixed;
     inset: 0;
@@ -81,10 +105,10 @@ input, textarea {
     display: none;
     justify-content: center;
     align-items: center;
-    z-index: 1000;
+    z-index: 99;
 }
 
-.popup-content {
+.popup-box {
     background: white;
     color: black;
     padding: 25px;
@@ -93,6 +117,7 @@ input, textarea {
     max-width: 350px;
 }
 
+/* Fireworks */
 .firework {
     position: fixed;
     width: 8px;
@@ -103,72 +128,82 @@ input, textarea {
 }
 
 @keyframes explode {
-    from { transform: scale(0); opacity: 1; }
-    to { transform: scale(6); opacity: 0; }
+    from {transform: scale(0); opacity:1;}
+    to {transform: scale(5); opacity:0;}
 }
 
 footer {
-    margin: 30px 0;
-    font-size: 0.85rem;
-    opacity: 0.9;
+    margin-top: 30px;
+    opacity: 0.85;
+}
+
+/* Mobile friendly */
+@media (max-width: 480px) {
+    h1 { font-size: 2em; }
 }
 </style>
 </head>
 
 <body>
 
-<!-- Background Music -->
+<!-- Background music -->
 <iframe id="music" width="0" height="0"
-src="https://www.youtube.com/embed/4lEpw9V1pC8?loop=1&playlist=4lEpw9V1pC8&autoplay=1&mute=1"
+src="https://www.youtube.com/embed/4lEpw9V1pC8?autoplay=1&mute=1&loop=1&playlist=4lEpw9V1pC8"
 allow="autoplay"></iframe>
 
 <h1>🎉 Happy New Year 2026 Manu 💖</h1>
 
 <div class="message">
-My love, may this year bring us closer, happier, and crazier together ❤️  
-Choose how we start our 2026 💫
+My love, may this year bring endless smiles, deep love & unforgettable memories 💫  
+Choose how we start our beautiful year together ❤️
 </div>
 
-<button class="btn" onclick="selectPlan('Romantic Dinner')">🍽️ Romantic Dinner</button>
-<button class="btn" onclick="selectPlan('Mall Date')">🛍️ Mall Date</button>
-<button class="btn" onclick="selectPlan('Shopping Date')">🛒 Shopping Date</button>
+<div class="gif-container">
+    <img src="https://media.giphy.com/media/3o7TKz9bX9Z8O2gO9q/giphy.gif" class="gif">
+    <img src="https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif" class="gif">
+</div>
 
-<input id="customPlan" placeholder="Or write your own idea 💭">
+<button class="option-button" onclick="selectPlan('Romantic Dinner')">🍽️ Romantic Dinner</button>
+<button class="option-button" onclick="selectPlan('Mall Date')">🛍️ Mall Date</button>
+<button class="option-button" onclick="selectPlan('Shopping Date')">🛒 Shopping Date</button>
 
-<button class="btn submit" onclick="openPopup()">Continue ❤️</button>
+<br>
+
+<input id="customIdea" placeholder="Or write your own idea 💭">
+
+<br>
+<button class="submit-btn" onclick="openPopup()">Continue 💖</button>
 
 <!-- Popup -->
 <div class="popup" id="popup">
-    <div class="popup-content">
+    <div class="popup-box">
         <h3>💖 Let's meet on</h3>
         <input type="date" id="meetDate">
         <br><br>
-        <button class="btn submit" onclick="sendData()">Confirm 💌</button>
+        <button class="submit-btn" onclick="sendData()">Confirm 💌</button>
     </div>
 </div>
-
-<div id="qrcode"></div>
 
 <footer>
 Made with ❤️ by Monu for Manu
 </footer>
 
 <script>
-const FORM_ENDPOINT = "https://formspree.io/f/xjgkbvjn";
+const FORM_ENDPOINT = "https://formspree.io/f/xxxxxx"; // REPLACE THIS
 
 let selectedPlan = "";
 
 function selectPlan(plan){
     selectedPlan = plan;
-    document.querySelectorAll(".btn").forEach(b => b.classList.remove("selected"));
-    event.target.classList.add("selected");
-    launchFireworks();
+    document.querySelectorAll('.option-button').forEach(b=>b.classList.remove('selected'));
+    event.target.classList.add('selected');
     playMusic();
+    launchFireworks();
 }
 
 function openPopup(){
-    if(!selectedPlan && !document.getElementById("customPlan").value){
-        alert("Please choose or write a plan 💖");
+    if(!selectedPlan && !document.getElementById("customIdea").value){
+        alert("Please select or write a plan 💖");
         return;
     }
     document.getElementById("popup").style.display = "flex";
@@ -176,21 +211,17 @@ function openPopup(){
 
 function sendData(){
     const date = document.getElementById("meetDate").value;
-    const custom = document.getElementById("customPlan").value;
-    const finalPlan = custom || selectedPlan;
+    const idea = document.getElementById("customIdea").value || selectedPlan;
 
-    fetch(FORM_ENDPOINT, {
-        method: "POST",
-        headers: {"Content-Type":"application/json"},
-        body: JSON.stringify({
-            plan: finalPlan,
-            date: date
-        })
+    fetch(FORM_ENDPOINT,{
+        method:"POST",
+        headers:{ "Content-Type":"application/json" },
+        body: JSON.stringify({ plan: idea, date: date })
     });
 
     alert("💌 Sent successfully!");
+    document.getElementById("popup").style.display="none";
     launchFireworks();
-    document.getElementById("popup").style.display = "none";
 }
 
 function launchFireworks(){
@@ -204,22 +235,18 @@ function launchFireworks(){
     }
 }
 
-// Auto fireworks at midnight
-setInterval(()=>{
-    const d = new Date();
-    if(d.getHours()===0 && d.getMinutes()===0){
-        launchFireworks();
-    }
-},60000);
-
-// Music autoplay unlock
 function playMusic(){
-    const iframe=document.getElementById("music");
+    const iframe = document.getElementById("music");
     iframe.src = iframe.src.replace("mute=1","mute=0");
 }
 
-// QR Code
-new QRCode(document.getElementById("qrcode"), window.location.href);
+// Auto fireworks at midnight
+setInterval(()=>{
+    const d=new Date();
+    if(d.getHours()==0 && d.getMinutes()==0){
+        launchFireworks();
+    }
+},60000);
 </script>
 
 </body>
