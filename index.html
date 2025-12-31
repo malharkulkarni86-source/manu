@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy New Year 2026! 💖</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
+            color: white;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            animation: bounce 2s infinite;
+        }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+        .message {
+            font-size: 1.2em;
+            margin: 20px 0;
+            line-height: 1.5;
+        }
+        .gif-container {
+            margin: 20px 0;
+        }
+        .gif {
+            width: 100%;
+            max-width: 300px;
+            border-radius: 10px;
+        }
+        .options {
+            margin: 30px 0;
+        }
+        .option-button {
+            background: rgba(255, 255, 255, 0.8);
+            color: #333;
+            border: none;
+            padding: 15px 20px;
+            margin: 10px;
+            border-radius: 25px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: transform 0.3s, background 0.3s;
+        }
+        .option-button:hover {
+            transform: scale(1.1);
+            background: rgba(255, 255, 255, 1);
+        }
+        .custom-input {
+            margin-top: 20px;
+        }
+        input[type="text"] {
+            padding: 10px;
+            border-radius: 10px;
+            border: none;
+            width: 80%;
+            max-width: 300px;
+        }
+        .submit-btn {
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin-top: 10px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        .confetti {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        .confetti-piece {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #ffd700;
+            animation: fall 3s linear infinite;
+        }
+        @keyframes fall {
+            0% { transform: translateY(-100vh) rotate(0deg); }
+            100% { transform: translateY(100vh) rotate(360deg); }
+        }
+        .fireworks {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 10;
+            display: none;
+        }
+        .firework {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background: #ff0000;
+            border-radius: 50%;
+            animation: explode 1s ease-out forwards;
+        }
+        @keyframes explode {
+            0% { transform: scale(0); opacity: 1; }
+            50% { transform: scale(2); opacity: 0.8; }
+            100% { transform: scale(4); opacity: 0; }
+        }
+        footer {
+            margin-top: 40px;
+            font-size: 0.8em;
+        }
+        audio {
+            display: none; /* Hidden, but plays */
+        }
+    </style>
+</head>
+<body>
+    <audio autoplay loop>
+        <source src="https://www.soundjay.com/misc/sounds/bell-ringing-05.wav" type="audio/wav"> <!-- Free love-themed bell sound; replace with a better one if needed (e.g., search for "romantic music free" on freesound.org) -->
+        Your browser does not support the audio element.
+    </audio>
+    
+    <div class="confetti" id="confetti"></div>
+    <div class="fireworks" id="fireworks"></div>
+    
+    <h1>🎉 Happy New Year 2026! 🎊</h1>
+    <div class="message">
+        <p>My dearest Manu, 💕</p>
+        <p>As the clock strikes midnight and 2026 begins, I want to wish you the happiest, most magical New Year ever! 🌟✨ May it be filled with love, laughter, adventures, and all your dreams coming true. You're my everything, and I'm so grateful for you. 🥰</p>
+        <p>Love, Monu</p>
+        <p>Let's make this year unforgettable! What should we plan for our New Year party? Choose an idea or suggest your own: 🍽️🥂🛍️</p>
+    </div>
+    
+    <div class="gif-container">
+        <img src="https://media.giphy.com/media/3o7TKz9bX9Z8O2gO9q/giphy.gif" alt="New Year Fireworks" class="gif"> <!-- Fireworks GIF -->
+        <img src="https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif" alt="Happy Couple" class="gif"> <!-- Romantic couple GIF -->
+    </div>
+    
+    <div class="options">
+        <button class="option-button" onclick="selectOption('Meal Date')">🍽️ Meal Date - A cozy dinner at our favorite spot!</button>
+        <button class="option-button" onclick="selectOption('Mall Date')">🛍️ Mall Date - Shopping spree and fun!</button>
+        <button class="option-button" onclick="selectOption('Shopping Date')">💳 Shopping Date - Let's find some treasures!</button>
+        <div class="custom-input">
+            <p>Or something else? Tell me your idea! 💡</p>
+            <input type="text" id="customIdea" placeholder="E.g., Beach trip, Movie night...">
+            <button class="submit-btn" onclick="selectOption(document.getElementById('customIdea').value)">Submit Idea</button>
+        </div>
+    </div>
+    
+    <p id="selection" style="margin-top: 20px; font-weight: bold;"></p>
+    
+    <footer>
+        Made with ❤️ just for you. Scan this to reply or let's chat! 📱
+    </footer>
+    
+    <script>
+        // Confetti animation
+        function createConfetti() {
+            const confetti = document.getElementById('confetti');
+            for (let i = 0; i < 50; i++) {
+                const piece = document.createElement('div');
+                piece.className = 'confetti-piece';
+                piece.style.left = Math.random() * 100 + '%';
+                piece.style.animationDelay = Math.random() * 3 + 's';
+                confetti.appendChild(piece);
+            }
+        }
+        createConfetti();
+        
+        // Fireworks animation
+        function triggerFireworks() {
+            const fireworks = document.getElementById('fireworks');
+            fireworks.style.display = 'block';
+            for (let i = 0; i < 20; i++) {
+                const firework = document.createElement('div');
+                firework.className = 'firework';
+                firework.style.left = Math.random() * 100 + '%';
+                firework.style.top = Math.random() * 100 + '%';
+                firework.style.background = ['#ff0000', '#00ff00', '#0000ff', '#ffff00'][Math.floor(Math.random() * 4)];
+                fireworks.appendChild(firework);
+                setTimeout(() => firework.remove(), 1000);
+            }
+            setTimeout(() => fireworks.style.display = 'none', 2000);
+        }
+        
+        // Handle option selection
+        function selectOption(choice) {
+            if (!choice || choice.trim() === '') return;
+            document.getElementById('selection').innerText = `Great choice, Manu! Let's plan: ${choice} 🎉`;
+            triggerFireworks(); // Play fireworks animation
+            // Send email via mailto (opens email client)
+            const subject = encodeURIComponent("New Year 2026 Plan from Manu");
+            const body = encodeURIComponent(`Hi, Manu selected: ${choice}. Love, Monu`);
+            window.location.href = `mailto:suyashkulkarni653@gmail.com?subject=${subject}&body=${body}`;
+        }
+    </script>
+</body>
+</html>
