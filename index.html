@@ -1,300 +1,226 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy New Year 2026! 💖</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"> <!-- Smooth font -->
-    <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
-            color: white;
-            text-align: center;
-            margin: 0;
-            padding: 20px;
-            overflow-x: hidden;
-            transition: all 0.3s ease; /* Smooth transitions */
-        }
-        h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
-            animation: bounce 2s infinite ease-in-out;
-        }
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-            40% { transform: translateY(-10px); }
-            60% { transform: translateY(-5px); }
-        }
-        .message {
-            font-size: 1.2em;
-            margin: 20px 0;
-            line-height: 1.5;
-            opacity: 0;
-            animation: fadeIn 2s ease-in-out 1s forwards;
-        }
-        @keyframes fadeIn {
-            to { opacity: 1; }
-        }
-        .gif-container {
-            margin: 20px 0;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-        .gif {
-            width: 100%;
-            max-width: 300px;
-            border-radius: 10px;
-            margin: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-        }
-        .options {
-            margin: 30px 0;
-        }
-        .option-button {
-            background: rgba(255, 255, 255, 0.9);
-            color: #333;
-            border: none;
-            padding: 15px 20px;
-            margin: 10px;
-            border-radius: 25px;
-            font-size: 1em;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        .option-button:hover {
-            transform: scale(1.05);
-            background: rgba(255, 255, 255, 1);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-        }
-        .option-button.selected {
-            background: #ff6b6b;
-            color: white;
-        }
-        .description {
-            display: none;
-            margin-top: 10px;
-        }
-        .description textarea {
-            width: 80%;
-            max-width: 300px;
-            padding: 10px;
-            border-radius: 10px;
-            border: none;
-            resize: vertical;
-            font-family: inherit;
-        }
-        .custom-input {
-            margin-top: 20px;
-        }
-        input[type="text"] {
-            padding: 10px;
-            border-radius: 10px;
-            border: none;
-            width: 80%;
-            max-width: 300px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        .submit-btn {
-            background: #ff6b6b;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            margin-top: 10px;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        .submit-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-        }
-        .loading {
-            display: none;
-            margin-top: 20px;
-            font-size: 1.2em;
-            animation: pulse 1s infinite;
-        }
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
-        }
-        .confetti {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -1;
-        }
-        .confetti-piece {
-            position: absolute;
-            width: 10px;
-            height: 10px;
-            background: #ffd700;
-            animation: fall 3s linear infinite ease-in-out;
-        }
-        @keyframes fall {
-            0% { transform: translateY(-100vh) rotate(0deg); }
-            100% { transform: translateY(100vh) rotate(360deg); }
-        }
-        .fireworks {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 10;
-            display: none;
-        }
-        .firework {
-            position: absolute;
-            width: 5px;
-            height: 5px;
-            background: #ff0000;
-            border-radius: 50%;
-            animation: explode 1s ease-out forwards;
-        }
-        @keyframes explode {
-            0% { transform: scale(0); opacity: 1; }
-            50% { transform: scale(2); opacity: 0.8; }
-            100% { transform: scale(4); opacity: 0; }
-        }
-        footer {
-            margin-top: 40px;
-            font-size: 0.8em;
-            opacity: 0.8;
-        }
-        audio {
-            display: none; /* Hidden, but plays */
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy New Year 2026 ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/qrcodejs/qrcode.min.js"></script>
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #ff758c, #ff7eb3);
+    color: white;
+    text-align: center;
+    overflow-x: hidden;
+}
+
+h1 {
+    margin-top: 20px;
+    font-size: 2.3rem;
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.message {
+    padding: 15px;
+    font-size: 1.1rem;
+}
+
+.btn {
+    width: 90%;
+    max-width: 360px;
+    padding: 15px;
+    margin: 10px auto;
+    border-radius: 30px;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    background: white;
+    color: #ff4081;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+    background: #ffe3ec;
+}
+
+.btn.selected {
+    background: #ff4081;
+    color: white;
+}
+
+input, textarea {
+    width: 90%;
+    max-width: 360px;
+    padding: 12px;
+    border-radius: 12px;
+    border: none;
+    margin-top: 10px;
+}
+
+.submit {
+    background: #ff4081;
+    color: white;
+}
+
+.popup {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.popup-content {
+    background: white;
+    color: black;
+    padding: 25px;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 350px;
+}
+
+.firework {
+    position: fixed;
+    width: 8px;
+    height: 8px;
+    background: gold;
+    border-radius: 50%;
+    animation: explode 1s ease-out forwards;
+}
+
+@keyframes explode {
+    from { transform: scale(0); opacity: 1; }
+    to { transform: scale(6); opacity: 0; }
+}
+
+footer {
+    margin: 30px 0;
+    font-size: 0.85rem;
+    opacity: 0.9;
+}
+</style>
 </head>
+
 <body>
-    <audio autoplay loop>
-        <source src="https://www.soundjay.com/misc/sounds/bell-ringing-05.wav" type="audio/wav"> <!-- Placeholder; replace with better love music -->
-        Your browser does not support the audio element.
-    </audio>
-    
-    <div class="confetti" id="confetti"></div>
-    <div class="fireworks" id="fireworks"></div>
-    
-    <h1>🎉 Happy New Year 2026! 🎊</h1>
-    <div class="message">
-        <p>My dearest Manu, 💕</p>
-        <p>As the clock strikes midnight and 2026 begins, I want to wish you the happiest, most magical New Year ever! 🌟✨ May it be filled with love, laughter, adventures, and all your dreams coming true. You're my everything, and I'm so grateful for you. 🥰</p>
-        <p>Love, Monu</p>
-        <p>Let's make this year unforgettable! What should we plan for our New Year party? Choose an idea, add a description, or suggest your own: 🍽️🥂🛍️</p>
+
+<!-- Background Music -->
+<iframe id="music" width="0" height="0"
+src="https://www.youtube.com/embed/4lEpw9V1pC8?loop=1&playlist=4lEpw9V1pC8&autoplay=1&mute=1"
+allow="autoplay"></iframe>
+
+<h1>🎉 Happy New Year 2026 Manu 💖</h1>
+
+<div class="message">
+My love, may this year bring us closer, happier, and crazier together ❤️  
+Choose how we start our 2026 💫
+</div>
+
+<button class="btn" onclick="selectPlan('Romantic Dinner')">🍽️ Romantic Dinner</button>
+<button class="btn" onclick="selectPlan('Mall Date')">🛍️ Mall Date</button>
+<button class="btn" onclick="selectPlan('Shopping Date')">🛒 Shopping Date</button>
+
+<input id="customPlan" placeholder="Or write your own idea 💭">
+
+<button class="btn submit" onclick="openPopup()">Continue ❤️</button>
+
+<!-- Popup -->
+<div class="popup" id="popup">
+    <div class="popup-content">
+        <h3>💖 Let's meet on</h3>
+        <input type="date" id="meetDate">
+        <br><br>
+        <button class="btn submit" onclick="sendData()">Confirm 💌</button>
     </div>
-    
-    <div class="gif-container">
-        <img src="https://media.giphy.com/media/3o7TKz9bX9Z8O2gO9q/giphy.gif" alt="New Year Fireworks" class="gif">
-        <img src="https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif" alt="Happy Couple" class="gif">
-    </div>
-    
-    <div class="options">
-        <div>
-            <button class="option-button" id="mealBtn" onclick="selectOption('Meal Date')">🍽️ Meal Date - A cozy dinner at our favorite spot!</button>
-            <div class="description" id="mealDesc">
-                <textarea placeholder="Add a description (e.g., Italian food, reservations needed?)"></textarea>
-            </div>
-        </div>
-        <div>
-            <button class="option-button" id="mallBtn" onclick="selectOption('Mall Date')">🛍️ Mall Date - Shopping spree and fun!</button>
-            <div class="description" id="mallDesc">
-                <textarea placeholder="Add a description (e.g., What to buy, time?)"></textarea>
-            </div>
-        </div>
-        <div>
-            <button class="option-button" id="shopBtn" onclick="selectOption('Shopping Date')">💳 Shopping Date - Let's find some treasures!</button>
-            <div class="description" id="shopDesc">
-                <textarea placeholder="Add a description (e.g., Online or in-store?)"></textarea>
-            </div>
-        </div>
-        <div class="custom-input">
-            <p>Or something else? Tell me your idea! 💡</p>
-            <input type="text" id="customIdea" placeholder="E.g., Beach trip, Movie night...">
-            <div class="description" id="customDesc" style="display: block;">
-                <textarea placeholder="Add a description"></textarea>
-            </div>
-            <button class="submit-btn" onclick="selectOption(document.getElementById('customIdea').value, document.getElementById('customDesc').querySelector('textarea').value)">Submit Idea</button>
-        </div>
-    </div>
-    
-    <div class="loading" id="loading">Sending your plan... ✨</div>
-    <p id="selection" style="margin-top: 20px; font-weight: bold;"></p>
-    
-    <footer>
-        Made with ❤️ just for you. Scan this to reply or let's chat! 📱
-    </footer>
-    
-    <script>
-        // Confetti animation
-        function createConfetti() {
-            const confetti = document.getElementById('confetti');
-            for (let i = 0; i < 50; i++) {
-                const piece = document.createElement('div');
-                piece.className = 'confetti-piece';
-                piece.style.left = Math.random() * 100 + '%';
-                piece.style.animationDelay = Math.random() * 3 + 's';
-                confetti.appendChild(piece);
-            }
-        }
-        createConfetti();
-        
-        // Fireworks animation
-        function triggerFireworks() {
-            const fireworks = document.getElementById('fireworks');
-            fireworks.style.display = 'block';
-            for (let i = 0; i < 20; i++) {
-                const firework = document.createElement('div');
-                firework.className = 'firework';
-                firework.style.left = Math.random() * 100 + '%';
-                firework.style.top = Math.random() * 100 + '%';
-                firework.style.background = ['#ff0000', '#00ff00', '#0000ff', '#ffff00'][Math.floor(Math.random() * 4)];
-                fireworks.appendChild(firework);
-                setTimeout(() => firework.remove(), 1000);
-            }
-            setTimeout(() => fireworks.style.display = 'none', 2000);
-        }
-        
-        // Handle option selection
-        let selectedOption = null;
-        function selectOption(choice, description = '') {
-            if (!choice || choice.trim() === '') {
-                alert('Please enter an idea!');
-                return;
-            }
-            // Reset previous selections
-            document.querySelectorAll('.option-button').forEach(btn => btn.classList.remove('selected'));
-            document.querySelectorAll('.description').forEach(desc => desc.style.display = 'none');
-            
-            // Set selected
-            if (choice !== document.getElementById('customIdea').value) {
-                const btnId = choice.replace(' ', '').toLowerCase() + 'Btn';
-                document.getElementById(btnId).classList.add('selected');
-                document.getElementById(btnId.replace('Btn', 'Desc')).style.display = 'block';
-                description = document.getElementById(btnId.replace('Btn', 'Desc')).querySelector('textarea').value;
-            }
-            
-            selectedOption = { choice, description };
-            document.getElementById('selection').innerText = `Great choice, Manu! Let's plan: ${choice}${description ? ' - ' + description : ''} 🎉`;
-            triggerFireworks();
-            
-            // Show loading and send email
-            document.getElementById('loading').style.display = 'block';
-            setTimeout(() => {
-                const subject = encodeURIComponent("New Year 2026 Plan from Manu");
-                const body = encodeURIComponent(`Hi, Manu selected: ${choice}${description ? ' - Description: ' + description : ''}. Love, Monu`);
-                window.location.href = `mailto:suyashkulkarni653@gmail.com?subject=${subject}&body=${body}`;
-                document.getElementById('loading').style.display = 'none';
-            }, 1000); // Simulate delay for smoothness
-        }
-    </script>
+</div>
+
+<div id="qrcode"></div>
+
+<footer>
+Made with ❤️ by Monu for Manu
+</footer>
+
+<script>
+const FORM_ENDPOINT = "https://formspree.io/f/xxxxxx"; // CHANGE THIS
+
+let selectedPlan = "";
+
+function selectPlan(plan){
+    selectedPlan = plan;
+    document.querySelectorAll(".btn").forEach(b => b.classList.remove("selected"));
+    event.target.classList.add("selected");
+    launchFireworks();
+    playMusic();
+}
+
+function openPopup(){
+    if(!selectedPlan && !document.getElementById("customPlan").value){
+        alert("Please choose or write a plan 💖");
+        return;
+    }
+    document.getElementById("popup").style.display = "flex";
+}
+
+function sendData(){
+    const date = document.getElementById("meetDate").value;
+    const custom = document.getElementById("customPlan").value;
+    const finalPlan = custom || selectedPlan;
+
+    fetch(FORM_ENDPOINT, {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({
+            plan: finalPlan,
+            date: date
+        })
+    });
+
+    alert("💌 Sent successfully!");
+    launchFireworks();
+    document.getElementById("popup").style.display = "none";
+}
+
+function launchFireworks(){
+    for(let i=0;i<25;i++){
+        const f=document.createElement("div");
+        f.className="firework";
+        f.style.left=Math.random()*100+"%";
+        f.style.top=Math.random()*100+"%";
+        document.body.appendChild(f);
+        setTimeout(()=>f.remove(),1000);
+    }
+}
+
+// Auto fireworks at midnight
+setInterval(()=>{
+    const d = new Date();
+    if(d.getHours()===0 && d.getMinutes()===0){
+        launchFireworks();
+    }
+},60000);
+
+// Music autoplay unlock
+function playMusic(){
+    const iframe=document.getElementById("music");
+    iframe.src = iframe.src.replace("mute=1","mute=0");
+}
+
+// QR Code
+new QRCode(document.getElementById("qrcode"), window.location.href);
+</script>
+
 </body>
 </html>
